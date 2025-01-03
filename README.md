@@ -34,6 +34,18 @@ pid = 972  # Substitua 972 pelo PID do processo correto
 ```python
 send(hwnd, next_target)
 ```
+## Módulo Mouse
+
+**Configure a janela alvo e importe o módulo.**
+```python
+import mouse
+
+hwnd = 0x000E0398
+xPos, yPos = 75, 75
+
+mouse.left(hwnd, xPos, yPos)
+```
+
 
 
 
