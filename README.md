@@ -12,3 +12,13 @@ tonirogerio7@gmail.com
 
 DISCORD:
 tonirogerio7
+
+
+Módulo Keyboard:
+Exemplo de como enviar uma tecla para o jogo:
+1 - definir o hwnd da janela, ex: hwnd = 972, esse será o alvo, a janela do jogo a receber o comando.
+2 - definir uma tecla, next_target = 'TAB'
+
+comando para enviar a tecla tab usando o módulo keyboard.py:
+send(hwnd, next_target)
+
