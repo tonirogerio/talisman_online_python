@@ -16,7 +16,7 @@ Scripts, funções e módulos que eu uso para criar bots no jogo Talisman Online
 
 ## Módulo Pointers
 
-**Configure o id de processo antes de testar as funções.
+**Configure o id de processo antes de testar as funções.**
 
 ```python
 # Testando o código
