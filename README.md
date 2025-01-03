@@ -1,24 +1,30 @@
-# Talisman Online Python.
+# Talisman Online Python
+
 Scripts, funções e módulos que eu uso para criar bots no jogo Talisman Online.
 
-Youtube:
-https://www.youtube.com/@tonyr0xx
+### Youtube
+[https://www.youtube.com/@tonyr0xx](https://www.youtube.com/@tonyr0xx)
 
-PIX :
-dae13311-4775-4973-849f-ad7d17ccbe8c
+### PIX
+`dae13311-4775-4973-849f-ad7d17ccbe8c`
 
-PAYPAL:
-tonirogerio7@gmail.com
+### PAYPAL
+`tonirogerio7@gmail.com`
 
-DISCORD:
-tonirogerio7
+### DISCORD
+`tonirogerio7`
 
+## Módulo Keyboard
 
-Módulo Keyboard:
-Exemplo de como enviar uma tecla para o jogo:
-1 - definir o hwnd da janela, ex: hwnd = 972, esse será o alvo, a janela do jogo a receber o comando.
-2 - definir uma tecla, next_target = 'TAB'
+**Exemplo de como enviar uma tecla para o jogo:**
 
-comando para enviar a tecla tab usando o módulo keyboard.py:
+1. Definir o `hwnd` da janela. Exemplo: `hwnd = 972`. Esse será o alvo, ou seja, a janela do jogo que receberá o comando.
+2. Definir uma tecla. Exemplo: `next_target = 'TAB'`
+
+**Comando para enviar a tecla TAB usando o módulo `keyboard.py`:**
+```python
 send(hwnd, next_target)
+```
+
+
 
