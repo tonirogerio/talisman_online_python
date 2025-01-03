@@ -14,6 +14,14 @@ Scripts, funções e módulos que eu uso para criar bots no jogo Talisman Online
 ### DISCORD
 `tonirogerio7`
 
+## Módulo Pointers
+**Configure o id de processo antes de testar as funções.
+
+```python
+# Testando o código
+pid = 972  # Substitua 972 pelo PID do processo correto
+```
+
 ## Módulo Keyboard
 
 **Exemplo de como enviar uma tecla para o jogo:**
