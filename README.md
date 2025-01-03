@@ -46,6 +46,9 @@ xPos, yPos = 75, 75
 mouse.left(hwnd, xPos, yPos)
 ```
 
+## Deleter.py
 
+**Apenas a funçao que uso para deletar itens, note que está configurada para o meu uso, você precisará configurar os comandos
+do mouse e keyboard de acordo com o seu projeto**
 
 
