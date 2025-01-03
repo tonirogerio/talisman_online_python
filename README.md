@@ -1,4 +1,4 @@
-Talisman Online Python.
+# Talisman Online Python.
 Scripts, funções e módulos que eu uso para criar bots no jogo Talisman Online.
 
 Youtube:
