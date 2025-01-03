@@ -122,6 +122,7 @@ class Pointers:
         if re.match(regex_pattern, name):
             # print(f"Terceiro pointer: {name}")
             return name
+            
     def team_name_1(self):
         name = self.read_string_from_pointer(self.TEAM_NAME_1, offset=0x4F4, max_length=50)
 
@@ -260,7 +261,7 @@ class Pointers:
         return dc
 
 # Testando o código
-"""pid = 972  # Substitua pelo PID do processo correto
+pid = 972  # Substitua 972 pelo PID do processo correto
 p = Pointers(pid)
 
 if p.is_target_selected():
@@ -283,9 +284,8 @@ print(f"TEAM_NAME_4: {team_name_4}")
 hp = p.target_hp()
 print(f"TARGET_HP: {hp}")
 target_name = p.get_target_name()
-print(f"TARGET_NAME: {target_name}")"""
-
-"""get_hp = p.get_hp()
+print(f"TARGET_NAME: {target_name}")
+get_hp = p.get_hp()
 print(f"CHAR_HP : {get_hp}")
 hp_plus = p.get_hp_plus()
 print(f"CHAR_HP_PLUS : {hp_plus}")
@@ -312,4 +312,4 @@ print(f"CHAR_BAG_OPEN : {bag_open}")
 team_size = p.get_team_size()
 print(f"TEAM_SIZE : {team_size}")
 dc = p.get_dc()
-print(f"CHAR_DC : {dc}")"""
+print(f"CHAR_DC : {dc}")
