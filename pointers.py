@@ -92,36 +92,7 @@ class Pointers:
         return name
 
     def get_target_name(self):
-        # Modifica a regex para permitir apenas letras e números ASCII, espaço e apóstrofo
-        regex_pattern = r"^[a-zA-Z0-9 ']+$"
-
-        # Primeira tentativa, evita invalido e lowercase
-        name = self.read_string_from_pointer(self.TARGET_NAME_POINTER, offset=0x9AC, max_length=50)
-        # print(f"Primeiro regex: {name}")
-        if re.match(regex_pattern, name):
-            if name and name[0].isupper():
-                if name and name[0].isnumeric() or name[1].isnumeric() or name[2].isnumeric():
-                    print(f"Invalid name: {name}")
-                else:
-                    # print(f"Primeiro pointer: {name}")
-                    return name
-
-        # Segunda tentativa, evita invalido
-        pointer = self.get_pointer(self.TARGET_NAME_POINTER, offsets=[0x9AC])
-        offset = 0x0
-        if pointer:
-            name = self.read_string_from_pointer(pointer + offset, max_length=50)
-            # print(f"Segundo regex: {name}")
-            if re.match(regex_pattern, name):
-                # print(f"Segundo pointer: {name}")
-                return name
-
-        # evita invalido e deixa passar lowercase, para target de player name
-        name = self.read_string_from_pointer(self.TARGET_NAME_POINTER, offset=0x9AC, max_length=50)
-        # print(f"Terceiro regex: {name}")
-        if re.match(regex_pattern, name):
-            # print(f"Terceiro pointer: {name}")
-            return name
+        return self.read_string_from_pointer(self.TARGET_NAME_POINTER, offset=0x9AC, max_length=50)
             
     def team_name_1(self):
         name = self.read_string_from_pointer(self.TEAM_NAME_1, offset=0x4F4, max_length=50)
