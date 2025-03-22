@@ -30,6 +30,8 @@ class Pointers:
         self.TARGET_HP_POINTER = self.get_pointer(0x012CE2E0, offsets=[0x18, 0x59C, 0x0, 0xC, 0x1F4, 0x15C, 0x480])
         self.TARGET_SELECT = self.get_pointer(self.CLIENT + 0x00EC05C8, offsets=[0xD0, 0x2DC, 0x24, 0xC10])
         self.TARGET_NAME_POINTER = self.get_pointer(0x012CE2E0, offsets=[0x18, 0xB1C, 0x0, 0xC, 0x1F8, 0x43C])
+        self.TARGET_NAME_POINTER_2 = self.get_pointer(0x012CE2E0, offsets=[0x18, 0xB1C, 0x0, 0xC, 0xD9C])
+        self.TARGET_NAME_POINTER_3 = self.get_pointer(0x012CE2E0, offsets=[0x18, 0xB1C, 0x0, 0xC, 0xD9C, 0x9AC])
 
         self.TEAM_SIZE_POINTER = self.get_pointer(0x0106D328, offsets=[0x3D8])
         self.TEAM_NAME_1 = self.get_pointer(0x012CE2E0, offsets=[0x18, 0x77C, 0x0, 0xC, 0x678, 0x8B4])
@@ -92,8 +94,11 @@ class Pointers:
         return name
 
     def get_target_name(self):
-        return self.read_string_from_pointer(self.TARGET_NAME_POINTER, offset=0x9AC, max_length=50)
-            
+        val = self.read_string_from_pointer(self.TARGET_NAME_POINTER_3, offset=0x0, max_length=50)
+        if val == 'Offline Account':
+            val = self.read_string_from_pointer(self.TARGET_NAME_POINTER, offset=0x9AC, max_length=50)
+        return val
+
     def team_name_1(self):
         name = self.read_string_from_pointer(self.TEAM_NAME_1, offset=0x4F4, max_length=50)
 
@@ -231,56 +236,60 @@ class Pointers:
         dc = self.read_value(self.DC_POINTER, data_type="int")
         return dc
 
-# Testando o código
-pid = 972  # Substitua 972 pelo PID do processo correto
-p = Pointers(pid)
+def main():
+    # Testando o código
+    pid = 972  # Substitua 972 pelo PID do processo correto
+    p = Pointers(pid)
 
-if p.is_target_selected():
-    print("Um alvo está selecionado!")
-else:
-    print("Nenhum alvo está selecionado.")
+    if p.is_target_selected():
+        print("Um alvo está selecionado!")
+    else:
+        print("Nenhum alvo está selecionado.")
 
-name = p.get_char_name()
-print(f"CHAR_NAME: {name}")
-level = p.get_level()
-print(f"LEVEL: {level}")
-team_name_1 = p.team_name_1()
-print(f"TEAM_NAME_1: {team_name_1}")
-team_name_2 = p.team_name_2()
-print(f"TEAM_NAME_2: {team_name_2}")
-team_name_3 = p.team_name_3()
-print(f"TEAM_NAME_3: {team_name_3}")
-team_name_4 = p.team_name_4()
-print(f"TEAM_NAME_4: {team_name_4}")
-hp = p.target_hp()
-print(f"TARGET_HP: {hp}")
-target_name = p.get_target_name()
-print(f"TARGET_NAME: {target_name}")
-get_hp = p.get_hp()
-print(f"CHAR_HP : {get_hp}")
-hp_plus = p.get_hp_plus()
-print(f"CHAR_HP_PLUS : {hp_plus}")
-hp_buff = p.get_hp_buff()
-print(f"CHAR_HP_BUFF : {hp_buff}")
-max_hp = p.get_max_hp()
-print(f"CHAR_MAX_HP : {max_hp}")
-battle = p.is_in_battle()
-print(f"CHAR_BATTLE_STATUS : {battle}")
-mana = p.get_mana()
-print(f"CHAR_MANA : {mana}")
-mana_buff = p.get_mana_buff()
-print(f"CHAR_MANA_BUFF : {mana_buff}")
-max_mana = p.get_max_mana()
-print(f"CHAR_MAX_MANA : {max_mana}")
-sit = p.is_sitting()
-print(f"CHAR_SIT : {sit}")
-x_pos = p.get_x()
-print(f"CHAR_X_POS : {x_pos}")
-y_pos = p.get_y()
-print(f"CHAR_Y_POS : {y_pos}")
-bag_open = p.is_bag_open()
-print(f"CHAR_BAG_OPEN : {bag_open}")
-team_size = p.get_team_size()
-print(f"TEAM_SIZE : {team_size}")
-dc = p.get_dc()
-print(f"CHAR_DC : {dc}")
+    name = p.get_char_name()
+    print(f"CHAR_NAME: {name}")
+    level = p.get_level()
+    print(f"LEVEL: {level}")
+    team_name_1 = p.team_name_1()
+    print(f"TEAM_NAME_1: {team_name_1}")
+    team_name_2 = p.team_name_2()
+    print(f"TEAM_NAME_2: {team_name_2}")
+    team_name_3 = p.team_name_3()
+    print(f"TEAM_NAME_3: {team_name_3}")
+    team_name_4 = p.team_name_4()
+    print(f"TEAM_NAME_4: {team_name_4}")
+    hp = p.target_hp()
+    print(f"TARGET_HP: {hp}")
+    target_name = p.get_target_name()
+    print(f"TARGET_NAME: {target_name}")
+    get_hp = p.get_hp()
+    print(f"CHAR_HP : {get_hp}")
+    hp_plus = p.get_hp_plus()
+    print(f"CHAR_HP_PLUS : {hp_plus}")
+    hp_buff = p.get_hp_buff()
+    print(f"CHAR_HP_BUFF : {hp_buff}")
+    max_hp = p.get_max_hp()
+    print(f"CHAR_MAX_HP : {max_hp}")
+    battle = p.is_in_battle()
+    print(f"CHAR_BATTLE_STATUS : {battle}")
+    mana = p.get_mana()
+    print(f"CHAR_MANA : {mana}")
+    mana_buff = p.get_mana_buff()
+    print(f"CHAR_MANA_BUFF : {mana_buff}")
+    max_mana = p.get_max_mana()
+    print(f"CHAR_MAX_MANA : {max_mana}")
+    sit = p.is_sitting()
+    print(f"CHAR_SIT : {sit}")
+    x_pos = p.get_x()
+    print(f"CHAR_X_POS : {x_pos}")
+    y_pos = p.get_y()
+    print(f"CHAR_Y_POS : {y_pos}")
+    bag_open = p.is_bag_open()
+    print(f"CHAR_BAG_OPEN : {bag_open}")
+    team_size = p.get_team_size()
+    print(f"TEAM_SIZE : {team_size}")
+    dc = p.get_dc()
+    print(f"CHAR_DC : {dc}")
+
+if __name__ == "__main__":
+    main()
