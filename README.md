@@ -2,6 +2,9 @@
 
 Scripts, funções e módulos que eu uso para criar bots no jogo Talisman Online.
 
+### Website
+[https://tonyrogerio.com.br](https://tonyrogerio.com.br)
+
 ### Youtube
 [https://www.youtube.com/@tonyr0xx](https://www.youtube.com/@tonyr0xx)
 
