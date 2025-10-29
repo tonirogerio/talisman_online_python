@@ -110,10 +110,12 @@ class Pointers:
             final_address = pointer_address + offset
             byte_data = self.pm.read_bytes(final_address, max_length)
             string_data = byte_data.split(b'\x00', 1)[0].decode('utf-8', errors='ignore')
-            return string_data
+            if string_data.isascii():
+                return string_data
+
         except Exception as e:
-            #print(f"String Error: {e}")
-            return None
+            pass
+        return None
 
     def get_char_name(self) -> str:
         name = self.read_string_from_pointer(self.CHAR_NAME_POINTER, offset=0xBC, max_length=50)
@@ -129,7 +131,7 @@ class Pointers:
 
     def get_target_name(self) -> str:
         val = self.read_string_from_pointer(self.TARGET_NAME_POINTER_3, offset=0x0, max_length=50)
-        if val == 'Offline Account':
+        if not val:
             val = self.read_string_from_pointer(self.TARGET_NAME_POINTER, offset=0x9AC, max_length=50)
         return val
 
@@ -302,7 +304,7 @@ class Pointers:
 
     def search_id(self):
         final_pointer = 0
-        max_attempts = 3  # Número máximo de tentativas completas
+        max_attempts = 1  # Número máximo de tentativas completas
         erro_count = 0  # Contador para limitar mensagens de erro
 
         for attempt in range(max_attempts):
